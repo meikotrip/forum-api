@@ -3,3 +3,5 @@ node_modules
 package-lock.json
 config/database/test.json
 coverage
+
+# TINGGAL GETDETAILCOMMENT, GETDETAILTHREAD,UNTUK KRITERIA UMUMNYO
