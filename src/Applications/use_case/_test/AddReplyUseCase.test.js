@@ -32,7 +32,11 @@ describe('AddReplyUseCase', () => {
     mockCommentRepository.verifyCommentIsExist = jest.fn()
       .mockImplementation(() => Promise.resolve());
     mockReplyRepository.addReply = jest.fn()
-      .mockImplementation(() => Promise.resolve(expectedRegisteredReply));
+      .mockImplementation(() => Promise.resolve(new RegisteredComment({
+        id: 'reply-001',
+        content: 'mantap',
+        owner: 'user-234',
+      })));
 
     /** creating use case instance */
     const addReplyUseCase = new AddReplyUseCase({

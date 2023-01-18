@@ -27,7 +27,11 @@ describe('AddCommentUseCase', () => {
     mockThreadRepository.verifyThreadIsExist = jest.fn()
       .mockImplementation(() => Promise.resolve());
     mockCommentRepository.addComment = jest.fn()
-      .mockImplementation(() => Promise.resolve(expectedRegisteredComment));
+      .mockImplementation(() => Promise.resolve(new RegisteredComment({
+        id: 'comment-001',
+        content: 'mantap',
+        owner: 'user-234',
+      })));
 
     /** creating use case instance */
     const addCommentUseCase = new AddCommentUseCase({

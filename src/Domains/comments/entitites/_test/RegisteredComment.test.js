@@ -36,8 +36,8 @@ describe('A RegisteredComment entities', () => {
     const registeredComment = new RegisteredComment(payload);
 
     // Assert
-    expect(registeredComment.body).toEqual(payload.body);
-    expect(registeredComment.title).toEqual(payload.title);
+    expect(registeredComment.id).toEqual(payload.id);
+    expect(registeredComment.content).toEqual(payload.content);
     expect(registeredComment.owner).toEqual(payload.owner);
   });
 });

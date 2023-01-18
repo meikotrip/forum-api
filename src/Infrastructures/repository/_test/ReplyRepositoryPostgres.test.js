@@ -176,6 +176,22 @@ describe('ReplyRepositoryPostgres', () => {
 
       // Assert
       expect(getReplies).toHaveLength(2);
+
+      expect(getReplies[0].id).toEqual(firstReplyOnComment001.id);
+      expect(getReplies[0].content).toEqual(firstReplyOnComment001.content);
+      expect(getReplies[0].comment).toEqual(firstReplyOnComment001.comment);
+      expect(getReplies[0].owner).toEqual(firstReplyOnComment001.owner);
+      expect(getReplies[0].username).toEqual('user123');
+      expect(getReplies[0]).toHaveProperty('date');
+      expect(getReplies[0]).toHaveProperty('is_delete');
+
+      expect(getReplies[1].id).toEqual(firstReplyOnComment002.id);
+      expect(getReplies[1].content).toEqual(firstReplyOnComment002.content);
+      expect(getReplies[1].comment).toEqual(firstReplyOnComment002.comment);
+      expect(getReplies[1].owner).toEqual(firstReplyOnComment002.owner);
+      expect(getReplies[1].username).toEqual('user234');
+      expect(getReplies[1]).toHaveProperty('date');
+      expect(getReplies[1]).toHaveProperty('is_delete');
     });
   });
 });

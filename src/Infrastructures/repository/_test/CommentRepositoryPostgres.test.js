@@ -188,6 +188,10 @@ describe('CommentRepositoryPostgres', () => {
 
       // Assert
       expect(comments).toHaveLength(1);
+      expect(comments[0].id).toEqual('comment-001');
+      expect(comments[0].username).toEqual('user234');
+      expect(comments[0]).toHaveProperty('date');
+      expect(comments[0].content).toEqual('content test');
     });
   });
 });
