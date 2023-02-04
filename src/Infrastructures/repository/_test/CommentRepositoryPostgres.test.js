@@ -160,11 +160,13 @@ describe('CommentRepositoryPostgres', () => {
   describe('getCommentsByThreadId', () => {
     it('should return comments correctly', async () => {
       // Arrange
+      const currentDate = new Date();
       await CommentsTableTestHelper.addComment({
         id: 'comment-001',
         thread: 'thread-001',
         owner: 'user-234',
         content: 'content test',
+        date: currentDate,
       });
 
       async function addCommentAnotherThread() {
@@ -190,7 +192,7 @@ describe('CommentRepositoryPostgres', () => {
       expect(comments).toHaveLength(1);
       expect(comments[0].id).toEqual('comment-001');
       expect(comments[0].username).toEqual('user234');
-      expect(comments[0]).toHaveProperty('date');
+      expect(comments[0].date).toEqual(currentDate);
       expect(comments[0].content).toEqual('content test');
     });
   });

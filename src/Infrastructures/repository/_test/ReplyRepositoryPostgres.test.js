@@ -152,11 +152,14 @@ describe('ReplyRepositoryPostgres', () => {
   describe('getRepliesByCommentIds', () => {
     it('should return replies correctly', async () => {
       // Arrange
+      const currentDate = new Date();
       const firstReplyOnComment001 = {
         id: 'reply-001',
         content: 'content test',
         comment: 'comment-001',
         owner: 'user-123',
+        date: currentDate,
+        is_delete: false,
       };
 
       const firstReplyOnComment002 = {
@@ -164,6 +167,8 @@ describe('ReplyRepositoryPostgres', () => {
         content: 'content test',
         comment: 'comment-002',
         owner: 'user-234',
+        date: currentDate,
+        is_delete: false,
       };
 
       await RepliesTableTestHelper.addReply(firstReplyOnComment001);
@@ -182,16 +187,16 @@ describe('ReplyRepositoryPostgres', () => {
       expect(getReplies[0].comment).toEqual(firstReplyOnComment001.comment);
       expect(getReplies[0].owner).toEqual(firstReplyOnComment001.owner);
       expect(getReplies[0].username).toEqual('user123');
-      expect(getReplies[0]).toHaveProperty('date');
-      expect(getReplies[0]).toHaveProperty('is_delete');
+      expect(getReplies[0].date).toEqual(currentDate);
+      expect(getReplies[0].is_delete).toEqual(false);
 
       expect(getReplies[1].id).toEqual(firstReplyOnComment002.id);
       expect(getReplies[1].content).toEqual(firstReplyOnComment002.content);
       expect(getReplies[1].comment).toEqual(firstReplyOnComment002.comment);
       expect(getReplies[1].owner).toEqual(firstReplyOnComment002.owner);
       expect(getReplies[1].username).toEqual('user234');
-      expect(getReplies[1]).toHaveProperty('date');
-      expect(getReplies[1]).toHaveProperty('is_delete');
+      expect(getReplies[1].date).toEqual(currentDate);
+      expect(getReplies[1].is_delete).toEqual(false);
     });
   });
 });
